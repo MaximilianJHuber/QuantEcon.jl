@@ -8,6 +8,7 @@ import Base: mean, std, var, show, isapprox
 using Distributions
 import Distributions: pdf, skewness, BetaBinomial
 using DSP: TFFilter, freqz
+using Primes
 
 # useful types
 typealias ScalarOrArray{T} Union{T, Array{T}}
@@ -41,7 +42,7 @@ export
 
 # mc_tools
     MarkovChain,
-    mc_compute_stationary,
+    stationary_distributions,
     simulate, simulate!, simulate_values, simulate_values!,
     simulation, value_simulation,
     period, is_irreducible, is_aperiodic, recurrent_classes,

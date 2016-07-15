@@ -146,7 +146,7 @@ type DiscreteDP{T<:Real,NQ,NR,Tbeta<:Real,Tind}
         _a_indices = Nullable{Vector{Tind}}(_a_indices)
         a_indptr = Nullable{Vector{Tind}}(a_indptr)
 
-        new(R, full(Q), beta, _a_indices, a_indptr)
+        new(R, Q, beta, _a_indices, a_indptr)
     end
 end
 

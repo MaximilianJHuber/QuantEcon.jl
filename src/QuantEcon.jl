@@ -8,7 +8,8 @@ import Base: mean, std, var, show, isapprox
 using Distributions
 import Distributions: pdf, skewness, BetaBinomial
 using DSP: TFFilter, freqz
-using Primes
+using Primes: primes
+using Compat: view, @compat
 
 # useful types
 typealias ScalarOrArray{T} Union{T, Array{T}}
@@ -41,10 +42,9 @@ export
     draw,
 
 # mc_tools
-    MarkovChain,
+    MarkovChain, MCIndSimulator, MCSimulator,
     stationary_distributions,
-    simulate, simulate!, simulate_values, simulate_values!,
-    simulation, value_simulation,
+    simulate, simulate!, simulate_indices, simulate_indices!,
     period, is_irreducible, is_aperiodic, recurrent_classes,
     communication_classes, n_states,
 
@@ -97,7 +97,7 @@ export
 
 # quad
     qnwlege, qnwcheb, qnwsimp, qnwtrap, qnwbeta, qnwgamma, qnwequi, qnwnorm,
-    qnwunif, qnwlogn,
+    qnwunif, qnwlogn, qnwmonomial1, qnwmonomial2,
     quadrect,
     do_quad,
 
@@ -111,9 +111,18 @@ export
 # ddp
     DiscreteDP, VFI, PFI, MPFI, solve, RQ_sigma,
     evaluate_policy, bellman_operator, compute_greedy,
-    bellman_operator!, compute_greedy!, num_states
+    bellman_operator!, compute_greedy!, num_states,
+
+# zeros / optimization
+    bisect, brenth, brent, ridder, expand_bracket, divide_bracket,
+    golden_method,
+
+# interp
+    interp, LinInterp
+
 
 include("util.jl")
+include("interp.jl")
 ##### includes
 include("arma.jl")
 include("compute_fp.jl")
@@ -133,5 +142,7 @@ include("matrix_eqn.jl")
 include("robustlq.jl")
 include("quad.jl")
 include("quadsums.jl")
+include("zeros.jl")
+include("optimization.jl")
 
 end # module

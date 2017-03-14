@@ -57,7 +57,7 @@ phi = 0.5
 theta = [0.0, -0.8]
 sigma = 1.0
 lp = ARMA(phi, theta, sigma)
-require(joinpath(Pkg.dir("QuantEcon"), "examples", "arma_plots.jl"))
+require(joinpath(dirname(@__FILE__),"..", "examples", "arma_plots.jl"))
 quad_plot(lp)
 ```
 """
@@ -72,9 +72,9 @@ type ARMA
 end
 
 # constructors to coerce phi/theta to vectors
-ARMA(phi::Real, theta::Real=0.0, sigma::Real=1.0) = ARMA([phi;], [theta;], sigma)
-ARMA(phi::Real, theta::Vector=[0.0], sigma::Real=1.0) = ARMA([phi;], theta, sigma)
-ARMA(phi::Vector, theta::Real=0.0, sigma::Real=1.0) = ARMA(phi, [theta;], sigma)
+ARMA(phi::Real, theta::Real, sigma::Real) = ARMA([phi;], [theta;], sigma)
+ARMA(phi::Real, theta::Vector, sigma::Real) = ARMA([phi;], theta, sigma)
+ARMA(phi::Vector, theta::Real, sigma::Real) = ARMA(phi, [theta;], sigma)
 
 function ARMA(phi::AbstractVector, theta::AbstractVector=[0.0], sigma::Real=1.0)
     # == Record dimensions == #
